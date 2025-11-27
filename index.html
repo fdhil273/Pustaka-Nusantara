@@ -1100,7 +1100,7 @@
         };
 
         const getProvincePhotos = (name) => provincePhotos[name] || [];
-        const buildFallbackProvinceImage = (name) => https://source.unsplash.com/600x400/?${encodeURIComponent(name + " culture indonesia")};
+        const buildFallbackProvinceImage = (name) => `https://source.unsplash.com/600x400/?${encodeURIComponent(name + " culture indonesia")}`;
         const getProvincePrimaryPhoto = (name) => {
             const photos = getProvincePhotos(name);
             return photos.length ? photos[0] : buildFallbackProvinceImage(name);
@@ -1110,15 +1110,15 @@
 
         const buildProvinceMediaBlock = (province) => {
             const photos = getProvincePhotos(province.name);
-            const title = Budaya ${province.name};
+            const title = `Budaya ${province.name}`;
 
             if (!photos.length) {
                 const fallback = buildFallbackProvinceImage(province.name);
-                return <div class="province-image"><img src="${fallback}" alt="${title}"></div>;
+                return `<div class="province-image"><img src="${fallback}" alt="${title}"></div>`;
             }
 
             if (photos.length === 1) {
-                return <div class="province-image"><img src="${photos[0]}" alt="${title}"></div>;
+                return `<div class="province-image"><img src="${photos[0]}" alt="${title}"></div>`;
             }
 
             const photosAttr = encodeAttribute(JSON.stringify(photos));
@@ -1138,7 +1138,7 @@
 
         const setHeroLayerBackground = (layer, image) => {
             if (!layer) return;
-            layer.style.backgroundImage = ${heroGradient}, url('${image}');
+            layer.style.backgroundImage = `${heroGradient}, url('${image}')`;
         };
 
         let activeHeroLayer = heroLayers[0] || null;
@@ -1254,7 +1254,7 @@
 
             provinceGrid.innerHTML = filtered.length
                 ? filtered.map(renderProvinceCard).join("")
-                : <div class="empty-state">Belum ada data yang cocok dengan kata kunci tersebut.</div>;
+                : `<div class="empty-state">Belum ada data yang cocok dengan kata kunci tersebut.</div>`;
             initProvinceCarousels();
         };
 
@@ -1276,32 +1276,32 @@
             {
                 key: "house",
                 extractor: (province) => pickFirstItem(province.house),
-                buildText: (clue) => Rumah adat ${clue} berasal dari provinsi mana?
+                buildText: (clue) => `Rumah adat ${clue} berasal dari provinsi mana?`
             },
             {
                 key: "dances",
                 extractor: (province) => pickFirstItem(province.dances),
-                buildText: (clue) => Tari tradisional ${clue} populer di provinsi mana?
+                buildText: (clue) => `Tari tradisional ${clue} populer di provinsi mana?`
             },
             {
                 key: "instruments",
                 extractor: (province) => pickFirstItem(province.instruments),
-                buildText: (clue) => Alat musik ${clue} merupakan ciri khas provinsi mana?
+                buildText: (clue) => `Alat musik ${clue} merupakan ciri khas provinsi mana?`
             },
             {
                 key: "fabrics",
                 extractor: (province) => pickFirstItem(province.fabrics),
-                buildText: (clue) => Kain khas ${clue} berasal dari provinsi mana?
+                buildText: (clue) => `Kain khas ${clue} berasal dari provinsi mana?`
             },
             {
                 key: "weapons",
                 extractor: (province) => pickFirstItem(province.weapons),
-                buildText: (clue) => Senjata tradisional ${clue} digunakan oleh provinsi mana?
+                buildText: (clue) => `Senjata tradisional ${clue} digunakan oleh provinsi mana?`
             },
             {
                 key: "languages",
                 extractor: (province) => pickFirstItem(province.languages),
-                buildText: (clue) => Bahasa ${clue} banyak digunakan di provinsi mana?
+                buildText: (clue) => `Bahasa ${clue} banyak digunakan di provinsi mana?`
             }
         ];
 
@@ -1330,7 +1330,7 @@
                 if (correctBtn) {
                     correctBtn.classList.add('correct');
                 }
-                gameFeedbackEl.textContent = Belum tepat, jawabannya ${currentCorrectProvince}.;
+                gameFeedbackEl.textContent = `Belum tepat, jawabannya ${currentCorrectProvince}.`;
             }
         };
 
@@ -1346,7 +1346,7 @@
             gameOptionsEl.innerHTML = options
                 .map(
                     (option) =>
-                        <button type="button" class="game-option" data-option="${option}">${option}</button>
+                        `<button type="button" class="game-option" data-option="${option}">${option}</button>`
                 )
                 .join('');
         };
