@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pustaka Nusantara</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f44336;
+            --accent: #ffcc00;
+            --bg-dark: #050505;
+            --bg-panel: #0f0f0f;
+            --text-light: #f5f5f5;
+            --text-muted: #c1c1c1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(16px);
+            background: rgba(5, 5, 5, 0.75);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .nav-brand span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: inline-block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+
+        .hero {
+            position: relative;
+            min-height: 80vh;
+            background-image: linear-gradient(120deg, rgba(5,5,5,0.7), rgba(5,5,5,0.85)), url('batik.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 1.5rem;
+        }
+
+        .hero-content {
+            max-width: 960px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .hero p {
+            margin: 1.5rem 0 2rem;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .hero-stats span {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        main {
+            background: linear-gradient(180deg, rgba(10,10,10,1), rgba(15,15,15,1));
+        }
+
+        section {
+            padding: 4rem 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title h2 {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 1.5rem;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .search-bar {
+            max-width: 780px;
+            margin: 0 auto 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.85rem 1.3rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-bar input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .search-bar span {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.7rem;
+            color: var(--accent);
+        }
+
+        .featured-grid,
+        .province-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .featured-grid {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .featured-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 18px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 240px;
+        }
+
+        .featured-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+            pointer-events: none;
+        }
+
+        .featured-card strong {
+            font-size: 2rem;
+            color: var(--accent);
+            z-index: 1;
+        }
+
+        .featured-card .tag {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            z-index: 1;
+        }
+
+        .featured-card h3 {
+            font-size: 1.3rem;
+            z-index: 1;
+        }
+
+        .featured-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            z-index: 1;
+        }
+
+        .province-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 18px;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .province-card {
+            background: rgba(12, 12, 12, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.45);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .province-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .province-card h3 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+        }
+
+        .province-card h3 span {
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        .province-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .province-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .province-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 0.65rem;
+        }
+
+        .province-gallery img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            object-fit: cover;
+            box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .meta {
+            display: grid;
+            gap: 0.4rem;
+        }
+
+        .meta label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .meta p {
+            font-size: 0.85rem;
+        }
+
+        .cta-section {
+            background-image: linear-gradient(120deg, rgba(5,5,5,0.8), rgba(5,5,5,0.9)), url('batik%202.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 32px;
+            padding: 3rem;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .cta-section p {
+            color: var(--text-muted);
+            margin: 1rem 0 2rem;
+        }
+
+        .cta-section a {
+            display: inline-block;
+            padding: 0.9rem 2.4rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            text-decoration: none;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+        }
+
+        .mini-game {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 2rem;
+            display: grid;
+            gap: 1.5rem;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+        }
+
+        .game-question {
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .game-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .game-option {
+            padding: 0.9rem 1rem;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-light);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .game-option:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .game-option.correct {
+            border-color: #4caf50;
+            background: rgba(76, 175, 80, 0.18);
+        }
+
+        .game-option.wrong {
+            border-color: #ff5252;
+            background: rgba(244, 67, 54, 0.2);
+        }
+
+        .game-option:disabled {
+            opacity: 0.75;
+            cursor: not-allowed;
+        }
+
+        .game-status {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .game-status button {
+            padding: 0.7rem 1.8rem;
+            border: none;
+            border-radius: 999px;
+            background: var(--primary);
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1.5rem 3rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            .nav {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <div class="nav-brand"><span></span> Pusaka Nusantara</div>
+            <div class="nav-links">
+                <a href="#featured">destinasi</a>
+                <a href="#provinces">38 provinsi</a>
+                <a href="#game">mini game</a>
+            </div>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="hero-content">
+            <p>Eksplorasi ragam bahasa, seni, dan tradisi dari Sabang sampai Merauke.</p>
+            <h1>Visit Indonesia Culture</h1>
+            <div class="hero-stats">
+                <span>38 Provinsi • 190+ warisan budaya</span>
+            </div>
+        </div>
+    </section>
+    <main>
+        <section id="featured">
+            <div class="section-title">
+                <p>bingung mulai dari mana?</p>
+                <h2>DESTINASI REKOMENDASI</h2>
+            </div>
+            <div class="featured-grid" id="featured-grid"></div>
+        </section>
+
+        <section id="provinces">
+            <div class="section-title">
+                <p>dari sumatra hingga papua</p>
+                <h2>ENSIKLOPEDIA BUDAYA 38 PROVINSI</h2>
+            </div>
+            <div class="search-bar">
+                <span>cari</span>
+                <input type="text" id="province-search" placeholder="Cari provinsi, tari, rumah adat, atau kain khas...">
+            </div>
+            <div class="province-grid" id="province-grid"></div>
+        </section>
+
+        <section id="cta" class="cta-section">
+            <h2>travel dan nikmati liburan budaya</h2>
+            <p>Temukan cerita di balik setiap rumah adat, ritme tarian, hingga senjata tradisional yang melambangkan kejayaan leluhur.</p>
+            <a href="#provinces">Swipe untuk Jelajah</a>
+        </section>
+
+        <section id="game">
+            <div class="section-title">
+                <p>uji pengetahuanmu</p>
+                <h2>mini game kebudayaan</h2>
+            </div>
+            <div class="mini-game">
+                <div class="game-card">
+                    <p class="game-question" id="game-question">Mulai permainan untuk melihat pertanyaan.</p>
+                    <div class="game-options" id="game-options"></div>
+                    <div class="game-status">
+                        <span id="game-feedback">Klik opsi untuk menjawab.</span>
+                        <button id="game-next">Pertanyaan Baru</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>© 2025 Nusantara Culture Trail</footer>
+
+    <script>
+        const provinces = [
+            {
+                name: "ACEH",
+                languages: "Aceh, Gayo, Alas, Tamiang, Melayu Aceh",
+                house: "Rumoh Aceh",
+                dances: "Saman, Seudati, Laweut, Pho",
+                instruments: "Rapai, Serune Kalee, Geundrang, Canang",
+                fabrics: "Songket Aceh, Ija Krong, Ija Lamgugob",
+                weapons: "Rencong, Siwah, Peudeung"
+            },
+            {
+                name: "SUMATERA UTARA",
+                languages: "Batak Toba, Batak Karo, Batak Simalungun, Batak Mandailing, Batak Pakpak, Melayu, Nias",
+                house: "Rumah Bolon, Rumah Adat Karo",
+                dances: "Tor-tor, Sigale-gale, Maena",
+                instruments: "Gondang, Sarune, Ole-ole, Aramba",
+                fabrics: "Ulos, Kain Tenun Nias",
+                weapons: "Piso Sanalenggam, Piso Gajah Dompak"
+            },
+            {
+                name: "SUMATERA BARAT",
+                languages: "Minangkabau, Mentawai",
+                house: "Rumah Gadang",
+                dances: "Piring, Pasambahan, Randai, Payung",
+                instruments: "Talempong, Saluang, Rabab, Bansi",
+                fabrics: "Songket Minangkabau, Tenun Silungkang",
+                weapons: "Keris, Karih, Ruduih"
+            },
+            {
+                name: "RIAU",
+                languages: "Melayu Riau, Hokkien, Minangkabau",
+                house: "Rumah Melayu Selaso Jatuh Kembar",
+                dances: "Zapin, Mak Yong, Melemang",
+                instruments: "Gambus, Marwas, Kompang, Akordeon",
+                fabrics: "Songket Riau, Tenun Siak",
+                weapons: "Badik Tumbuk Lada, Pedang Jenawi"
+            },
+            {
+                name: "JAMBI",
+                languages: "Melayu Jambi, Kerinci, Batin",
+                house: "Rumah Kajang Leko",
+                dances: "Sekapur Sirih, Selampit Delapan, Rangguk",
+                instruments: "Gambus, Kelintang, Kompangan",
+                fabrics: "Batik Jambi, Tenun Kunto",
+                weapons: "Keris Siginjai, Badik"
+            },
+            {
+                name: "BENGKULU",
+                languages: "Melayu Bengkulu, Rejang, Serawai",
+                house: "Rumah Rakyat/Bubungan Lima",
+                dances: "Andun, Bidadari Teminang Anak, Pukek",
+                instruments: "Dol, Gendang, Serunai",
+                fabrics: "Batik Besurek, Tenun Lantung",
+                weapons: "Keris, Rudus"
+            },
+            {
+                name: "SUMATERA SELATAN",
+                languages: "Palembang, Komering, Ogan, Lematang",
+                house: "Rumah Limas",
+                dances: "Tanggai, Gending Sriwijaya, Pagar Pengantin",
+                instruments: "Akordeon, Genggong, Kenong Basemah",
+                fabrics: "Songket Palembang, Kain Jumputan",
+                weapons: "Keris, Trisula, Tombak"
+            },
+            {
+                name: "LAMPUNG",
+                languages: "Lampung Api, Lampung Nyo, Komering",
+                house: "Rumah Nuwo Sesat",
+                dances: "Sigeh Penguten, Bedana, Melinting",
+                instruments: "Bende, Gambus Lunik, Serdam",
+                fabrics: "Tapis, Kain Pelepai",
+                weapons: "Terapang, Badik, Payan"
+            },
+            {
+                name: "BANGKA BELITUNG",
+                languages: "Melayu Bangka, Melayu Belitung, Hakka",
+                house: "Rumah Rakit, Rumah Limas",
+                dances: "Campak, Kedidi, Sepen",
+                instruments: "Gendang Melayu, Gambus, Rebana",
+                fabrics: "Kain Cual, Tenun Lassem",
+                weapons: "Parang Bangka, Siwar"
+            },
+            {
+                name: "KEPULAUAN RIAU",
+                languages: "Melayu Kepulauan Riau, Tionghoa",
+                house: "Rumah Belah Bubung",
+                dances: "Zapin Penyengat, Melemang, Joget Dangdang",
+                instruments: "Gendang, Biola, Gambus",
+                fabrics: "Tenun Sutra, Kain Telepok",
+                weapons: "Badik, Keris Lok 9"
+            },
+            {
+                name: "DKI JAKARTA",
+                languages: "Betawi, Indonesia",
+                house: "Rumah Kebaya, Rumah Gudang",
+                dances: "Topeng Betawi, Lenggang Nyai, Yapong",
+                instruments: "Gambang Kromong, Tanjidor, Rebana Biang",
+                fabrics: "Batik Betawi, Tenun Insang",
+                weapons: "Golok Betawi, Kerakel"
+            },
+            {
+                name: "JAWA BARAT",
+                languages: "Sunda, Cirebon, Indonesia",
+                house: "Rumah Jolopong, Togog Anjlok",
+                dances: "Jaipong, Merak, Topeng Cirebon",
+                instruments: "Angklung, Calung, Kacapi Suling",
+                fabrics: "Batik Garutan, Batik Cirebonan",
+                weapons: "Kujang, Bedog, Congkrang"
+            },
+            {
+                name: "JAWA TENGAH",
+                languages: "Jawa (Ngoko, Krama), Indonesia",
+                house: "Joglo, Limasan, Tajug",
+                dances: "Gambyong, Serimpi, Bedhaya",
+                instruments: "Gamelan Jawa, Siter, Rebab",
+                fabrics: "Batik Solo, Batik Pekalongan, Batik Lasem",
+                weapons: "Keris, Tombak, Wedhung"
+            },
+            {
+                name: "DI YOGYAKARTA",
+                languages: "Jawa (Ngoko, Krama Inggil)",
+                house: "Joglo Yogyakarta, Bangsal Kencono",
+                dances: "Bedhaya Ketawang, Golek, Beksan Lawung",
+                instruments: "Gamelan Jawa, Gejog Lesung",
+                fabrics: "Batik Yogyakarta, Batik Pedalaman",
+                weapons: "Keris Yogya, Tombak Kyai Pleret"
+            },
+            {
+                name: "JAWA TIMUR",
+                languages: "Jawa (Arekan), Madura, Osing",
+                house: "Joglo Jombang, Rumah Using",
+                dances: "Reog Ponorogo, Gandrung, Remo",
+                instruments: "Gamelan Jawa Timuran, Saronen",
+                fabrics: "Batik Madura, Batik Sidoarjo",
+                weapons: "Clurit, Keris Madura, Celurit"
+            },
+            {
+                name: "BANTEN",
+                languages: "Sunda Banten, Jawa Serang",
+                house: "Rumah Baduy, Rumah Sulah Nyanda",
+                dances: "Debus, Walijamaliha, Dzikir Saman",
+                instruments: "Bedug, Angklung Buhun, Dogdog Lojor",
+                fabrics: "Batik Banten, Tenun Baduy",
+                weapons: "Golok Ciomas, Parang"
+            },
+            {
+                name: "BALI",
+                languages: "Bali, Indonesia",
+                house: "Rumah Bali (Asta Kosala Kosali)",
+                dances: "Kecak, Legong, Pendet, Barong",
+                instruments: "Gamelan Bali, Rindik, Genggong",
+                fabrics: "Kain Endek, Songket Bali",
+                weapons: "Keris Bali, Tiuk, Tumbak"
+            },
+            {
+                name: "NUSA TENGGARA BARAT",
+                languages: "Sasak, Samawa, Mbojo",
+                house: "Bale Tani, Dalam Loka",
+                dances: "Gandrung, Oncer, Perang",
+                instruments: "Gendang Beleq, Serunai, Gambus",
+                fabrics: "Tenun Lombok, Songket Sumbawa",
+                weapons: "Keris, Sampari, Belati"
+            },
+            {
+                name: "NUSA TENGGARA TIMUR",
+                languages: "Kupang, Manggarai, Uab Meto",
+                house: "Musalaki, Lopo, Sao Ata Mosa Lakitana",
+                dances: "Caci, Likurai, Lego-lego",
+                instruments: "Sasando, Foy Doa, Heo",
+                fabrics: "Tenun Ikat NTT, Songket Sumba",
+                weapons: "Sundu, Parang, Tombak"
+            },
+            {
+                name: "KALIMANTAN BARAT",
+                languages: "Melayu Pontianak, Dayak, Tionghoa",
+                house: "Rumah Betang, Rumah Melayu",
+                dances: "Monong, Zapin, Kinyah",
+                instruments: "Sape', Gong, Entebong",
+                fabrics: "Batik Corak Insang, Tenun Dayak",
+                weapons: "Mandau, Dohong, Lonjo"
+            },
+            {
+                name: "KALIMANTAN TENGAH",
+                languages: "Dayak Ngaju, Melayu, Banjar",
+                house: "Rumah Betang",
+                dances: "Mandau, Balean Dadas, Giring-Giring",
+                instruments: "Japen, Katambung, Garantung",
+                fabrics: "Batik Benang Bintik, Tenun Ikat Dayak",
+                weapons: "Mandau, Duhung, Lunjuk"
+            },
+            {
+                name: "KALIMANTAN SELATAN",
+                languages: "Banjar, Dayak",
+                house: "Rumah Bubungan Tinggi",
+                dances: "Baksa Kembang, Radap Rahayu, Tirik",
+                instruments: "Panting, Babun, Kurung-Kurung",
+                fabrics: "Sasirangan, Batik Banjar",
+                weapons: "Keris Banjar, Mandau, Bujak"
+            },
+            {
+                name: "KALIMANTAN TIMUR",
+                languages: "Kutai, Banjar, Dayak",
+                house: "Rumah Lamin",
+                dances: "Gong, Kancet Ledo, Datun",
+                instruments: "Sampe', Gamelan Kutai, Klentangan",
+                fabrics: "Batik Kaltim, Ulap Doyo",
+                weapons: "Mandau, Sumpit, Dohong"
+            },
+            {
+                name: "KALIMANTAN UTARA",
+                languages: "Tidung, Bulungan, Dayak",
+                house: "Rumah Baloy",
+                dances: "Magunatip, Jugit, Lemandong",
+                instruments: "Sampe', Gambang, Kula",
+                fabrics: "Batik Kaltara, Tenun Tidung",
+                weapons: "Mandau, Gayang, Sumpit"
+            },
+            {
+                name: "SULAWESI UTARA",
+                languages: "Manado, Minahasa, Sangir",
+                house: "Rumah Walewangko",
+                dances: "Kabasaran, Maengket, Katrili",
+                instruments: "Kolintang, Bambu Hitada, Salude",
+                fabrics: "Bentenan, Tenun Minahasa",
+                weapons: "Santi, Pedang, Keris"
+            },
+            {
+                name: "GORONTALO",
+                languages: "Gorontalo, Indonesia",
+                house: "Rumah Dulohupa",
+                dances: "Saronde, Polopalo, Dana-Dana",
+                instruments: "Polopalo, Gambusi, Marwas",
+                fabrics: "Karawo, Tenun Gorontalo",
+                weapons: "Wamilo, Bitu'o, Sabeua"
+            },
+            {
+                name: "SULAWESI TENGAH",
+                languages: "Kaili, Bugis, Mori",
+                house: "Souraja, Tambi",
+                dances: "Dero, Lumense, Balia",
+                instruments: "Ganda, Lalove, Geso-Geso",
+                fabrics: "Tenun Donggala, Batik Palu",
+                weapons: "Pasatimpo, Guma, Keris"
+            },
+            {
+                name: "SULAWESI BARAT",
+                languages: "Mandar, Mamuju, Mamasa",
+                house: "Boyang",
+                dances: "Pattudu, Sayo, Ma'randing",
+                instruments: "Kecapi Mandar, Sattung, Pompang",
+                fabrics: "Tenun Sekomandi, Sarung Mandar",
+                weapons: "Badik, Keris, Tappi"
+            },
+            {
+                name: "SULAWESI SELATAN",
+                languages: "Makassar, Bugis, Toraja",
+                house: "Tongkonan, Rumah Panggung Bugis",
+                dances: "Pakarena, Ma'badong, Pagellu",
+                instruments: "Kecapi, Gandrang Bulo, Puik-Puik",
+                fabrics: "Sutra Bugis, Tenun Toraja",
+                weapons: "Badik, Keris, Tappi"
+            },
+            {
+                name: "SULAWESI TENGGARA",
+                languages: "Tolaki, Muna, Buton",
+                house: "Rumah Malige",
+                dances: "Lulo, Balumpa, Molulo",
+                instruments: "Kecapi, Ganda, Ore-Ore Mbondu",
+                fabrics: "Tenun Buton, Batik Wuna",
+                weapons: "Keris, Kanjoli, Sinonggi"
+            },
+            {
+                name: "MALUKU",
+                languages: "Ambon, Ternate, Kei",
+                house: "Baileo",
+                dances: "Cakalele, Lenso, Saureka-Reka",
+                instruments: "Tifa, Totobuang, Suling",
+                fabrics: "Tenun Ikat, Kain Salele",
+                weapons: "Parang Salawaku, Kalawai"
+            },
+            {
+                name: "MALUKU UTARA",
+                languages: "Ternate, Tidore, Galela",
+                house: "Sasadu",
+                dances: "Cakalele, Soya-Soya, Tide-Tide",
+                instruments: "Tifa, Doli-Doli, Korno",
+                fabrics: "Tenun Tidore, Batik Cengkeh",
+                weapons: "Parang Salawaku, Keris"
+            },
+            {
+                name: "PAPUA BARAT",
+                languages: "Biak, Ma'ya, Tehit",
+                house: "Rumah Kaki Seribu",
+                dances: "Wor, Sirenen, Yosim Pancar",
+                instruments: "Tifa, Guoto, Fuu",
+                fabrics: "Kain Timor, Noken",
+                weapons: "Busur Panah, Tombak"
+            },
+            {
+                name: "PAPUA",
+                languages: "Dani, Biak, Sentani",
+                house: "Honai, Ebai, Wamai",
+                dances: "Musyoh, War, Sajojo",
+                instruments: "Pikon, Tifa, Krombi",
+                fabrics: "Kain Kulit Kayu, Noken",
+                weapons: "Busur Panah, Tombak, Pisau Belati"
+            },
+            {
+                name: "PAPUA TENGAH",
+                languages: "Dani, Mee, Amungme",
+                house: "Honai",
+                dances: "Yospan, Wutukala, Pilamo",
+                instruments: "Pikon, Tifa, Kule",
+                fabrics: "Kain Kulit Kayu, Noken",
+                weapons: "Busur Panah, Tombak"
+            },
+            {
+                name: "PAPUA SELATAN",
+                languages: "Marind, Asmat, Muyu",
+                house: "Jew, Yeav",
+                dances: "Tobe, Asmat, Yosim Pancar",
+                instruments: "Tifa, Embe, Kecapi Mulut",
+                fabrics: "Kain Kulit Kayu, Noken",
+                weapons: "Busur Panah, Tombak"
+            },
+            {
+                name: "PAPUA PEGUNUNGAN",
+                languages: "Lani, Yali, Nduga",
+                house: "Honai",
+                dances: "War, Gatsi, Yospan",
+                instruments: "Pikon, Tifa, Kule",
+                fabrics: "Kain Kulit Kayu, Noken",
+                weapons: "Busur Panah, Tombak, Kapak Batu"
+            },
+            {
+                name: "PAPUA BARAT DAYA",
+                languages: "Raja Ampat, Maybrat, Inanwatan",
+                house: "Rumah Kaki Seribu",
+                dances: "Wor, Tumbuk Tanah, Saureka-Reka",
+                instruments: "Tifa, Triton, Guoto",
+                fabrics: "Kain Timor, Noken",
+                weapons: "Busur Panah, Tombak, Parang"
+            }
+        ];
+
+        const provincePhotos = {
+            "ACEH": ["img/aceh1.jpg", "img/aceh2.jpg", "img/aceh3.jpg"],
+            "SUMATERA UTARA": ["img/sumatera utara 1.jpg", "img/sumatera utara 2.jpg", "img/sumatera utara 3.jpg"],
+            "SUMATERA BARAT": ["img/sumatera barat.jpg"],
+            "RIAU": ["img/riau 1.jpg", "img/riau 2.jpg", "img/riau 3.jpg"],
+            "JAMBI": ["img/jambi.jpg"],
+            "BENGKULU": ["img/bengkulu.jpg"],
+            "SUMATERA SELATAN": ["img/sumatera selatan 1.jpg", "img/sumatera selatan 2.jpg", "img/sumatera selatan 3.jpg"],
+            "LAMPUNG": ["img/lampung.jpg"],
+            "BANGKA BELITUNG": ["img/bangka belitung.jpg"],
+            "KEPULAUAN RIAU": ["img/kepulauan riau.jpg"],
+            "DKI JAKARTA": ["img/dki jakarta 1.jpg", "img/dki jakarta 2.jpg", "img/dki jakarta 3.jpg"],
+            "JAWA BARAT": ["img/jawa barat 1.jpg", "img/jawa barat 2.jpg", "img/jawa barat 3.jpg"],
+            "JAWA TENGAH": ["img/jawa tengah 1.jpg", "img/jawa tengah 2.jpg", "img/jawa tengah 3.jpg"],
+            "DI YOGYAKARTA": ["img/yogya 1.jpg", "img/yogya 2.jpg", "img/yogya 3.jpg"],
+            "JAWA TIMUR": ["img/jawa timur 1.jpg", "img/jawa timur 2.jpg", "img/jawa timur 3.jpg"],
+            "BANTEN": ["img/banten.jpg"],
+            "BALI": ["img/bali 1.jpg", "img/bali 2.jpg", "img/bali 3.jpg"],
+            "NUSA TENGGARA BARAT": ["img/nusa tenggara barat 1.jpg", "img/nusa tenggara barat 2.jpg", "img/nusa tenggara barat 3'.jpg"],
+            "NUSA TENGGARA TIMUR": ["img/nusa tenggara timur 1.jpg", "img/nusa tenggara timur 2.jpg", "img/nusa tenggara timur 3.jpg"],
+            "KALIMANTAN BARAT": ["img/kalimantan barat.jpg"],
+            "KALIMANTAN TENGAH": ["img/kalimantan tengah.jpg"],
+            "KALIMANTAN SELATAN": ["img/kalimantan selatan.jpg"],
+            "KALIMANTAN TIMUR": ["img/kalimantan timur.jpg"],
+            "KALIMANTAN UTARA": ["img/kalimantan utara.jpg"],
+            "GORONTALO": ["img/gorontalo.jpg"],
+            "MALUKU": ["img/maluku 1.jpg", "img/maluku 2.jpg", "img/maluku 3.jpg"],
+            "MALUKU UTARA": ["img/maluku utara.jpg"],
+            "SULAWESI SELATAN": ["img/sulawesi selatan 1.jpg", "img/sulawesi selatan 2.jpg", "img/sulawesi selatan 3.jpg"],
+            "SULAWESI TENGGARA": ["img/sulawesi tenggara.jpg"],
+            "SULAWESI TENGAH": ["img/sulawesi tengah.jpg"],
+            "SULAWESI BARAT": ["img/sulawesi barat.jpg"],
+            "SULAWESI UTARA": ["img/sulawesi utara.jpg"],
+            "MALUKU": ["img/maluku 1.jpg", "img/maluku 2.jpg", "img/maluku 3.jpg"],
+            "MALUKU UTARA": ["img/maluku utara.jpg"],
+            "PAPUA": ["img/papua 1.jpg", "img/papua 2.jpg", "img/papua 3.jpg"],
+            "PAPUA BARAT": ["img/papua barat.jpg"],
+            "PAPUA BARAT DAYA": ["img/papua barat daya.jpg"],
+            "PAPUA TENGAH": ["img/papua tengah.jpg"],
+            "PAPUA SELATAN": ["img/papua selatan.jpg"],
+            "PAPUA PEGUNUNGAN": ["img/papua pegunungan.jpg"]
+        };
+
+        const getProvincePhotos = (name) => provincePhotos[name] || [];
+        const buildFallbackProvinceImage = (name) => `https://source.unsplash.com/600x400/?${encodeURIComponent(name + " culture indonesia")}`;
+        const getProvincePrimaryPhoto = (name) => {
+            const photos = getProvincePhotos(name);
+            return photos.length ? photos[0] : buildFallbackProvinceImage(name);
+        };
+
+        const encodeAttribute = (value) => value.replace(/"/g, '&quot;');
+
+        const buildProvinceMediaBlock = (province) => {
+            const photos = getProvincePhotos(province.name);
+            const title = `Budaya ${province.name}`;
+
+            if (!photos.length) {
+                const fallback = buildFallbackProvinceImage(province.name);
+                return `<div class="province-image"><img src="${fallback}" alt="${title}"></div>`;
+            }
+
+            if (photos.length === 1) {
+                return `<div class="province-image"><img src="${photos[0]}" alt="${title}"></div>`;
+            }
+
+            const photosAttr = encodeAttribute(JSON.stringify(photos));
+            return `
+                <div class="province-image province-image--carousel" data-photos="${photosAttr}">
+                    <img src="${photos[0]}" alt="${title}">
+                </div>
+            `;
+        };
+
+        const heroElement = document.querySelector('.hero');
+        const heroImages = ["img/alam1.jpg", "img/alam2.jpg","img/alam3.jpg","img/alam4.jpg", "img/alam5.jpg"];
+        const heroGradient = "linear-gradient(120deg, rgba(5,5,5,0.7), rgba(5,5,5,0.85))";
+        let heroIndex = 0;
+
+        const updateHeroBackground = () => {
+            const currentImage = heroImages[heroIndex % heroImages.length];
+            heroElement.style.backgroundImage = `${heroGradient}, url('${currentImage}')`;
+        };
+
+        updateHeroBackground();
+        setInterval(() => {
+            heroIndex += 1;
+            updateHeroBackground();
+        }, 5000);
+
+        const featuredIndices = [0, 10, 16, 33];
+        const featuredGrid = document.getElementById('featured-grid');
+        featuredGrid.innerHTML = featuredIndices.map((index, idx) => {
+            const province = provinces[index];
+            const suffix = idx === 0 ? "st" : idx === 1 ? "nd" : idx === 2 ? "rd" : "th";
+            return `
+                <article class="featured-card" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.8)), url('${getProvincePrimaryPhoto(province.name)}'); background-size: cover;">
+                    <span class="tag">${idx + 1}${suffix} place</span>
+                    <strong>${String(idx + 1).padStart(2, '0')}</strong>
+                    <h3>${province.name}</h3>
+                    <p>${province.dances.split(',')[0]} • ${province.house}</p>
+                </article>
+            `;
+        }).join('');
+
+        const provinceGrid = document.getElementById('province-grid');
+        const searchInput = document.getElementById('province-search');
+
+        const renderProvinceCard = (province) => {
+            const index = provinces.indexOf(province);
+            const cardNumber = String(index + 1).padStart(2, '0');
+            return `
+                <article class="province-card">
+                    ${buildProvinceMediaBlock(province)}
+                    <h3>${province.name} <span>${cardNumber}</span></h3>
+                    <div class="meta">
+                        <label>Bahasa</label>
+                        <p>${province.languages}</p>
+                    </div>
+                    <div class="meta">
+                        <label>Rumah Adat</label>
+                        <p>${province.house}</p>
+                    </div>
+                    <div class="meta">
+                        <label>Tari Tradisional</label>
+                        <p>${province.dances}</p>
+                    </div>
+                    <div class="meta">
+                        <label>Alat Musik</label>
+                        <p>${province.instruments}</p>
+                    </div>
+                    <div class="meta">
+                        <label>Batik / Kain Khas</label>
+                        <p>${province.fabrics}</p>
+                    </div>
+                    <div class="meta">
+                        <label>Senjata Tradisional</label>
+                        <p>${province.weapons}</p>
+                    </div>
+                </article>
+            `;
+        };
+
+        let provinceCarouselTimers = [];
+
+        const initProvinceCarousels = () => {
+            if (provinceCarouselTimers.length) {
+                provinceCarouselTimers.forEach((timerId) => clearInterval(timerId));
+                provinceCarouselTimers = [];
+            }
+
+            const carouselNodes = document.querySelectorAll('.province-image--carousel');
+            carouselNodes.forEach((node) => {
+                const imgEl = node.querySelector('img');
+                const photos = JSON.parse(node.dataset.photos || "[]");
+                if (!imgEl || photos.length < 2) {
+                    return;
+                }
+                let currentIndex = 0;
+                const switchImage = () => {
+                    currentIndex = (currentIndex + 1) % photos.length;
+                    imgEl.src = photos[currentIndex];
+                };
+                const timerId = setInterval(switchImage, 4000);
+                provinceCarouselTimers.push(timerId);
+            });
+        };
+
+        const renderProvinces = (query = "") => {
+            const normalized = query.trim().toLowerCase();
+            const filtered = provinces.filter((province) => {
+                if (!normalized) {
+                    return true;
+                }
+                return Object.values(province).some((value) =>
+                    typeof value === "string" && value.toLowerCase().includes(normalized)
+                );
+            });
+
+            provinceGrid.innerHTML = filtered.length
+                ? filtered.map(renderProvinceCard).join("")
+                : `<div class="empty-state">Belum ada data yang cocok dengan kata kunci tersebut.</div>`;
+            initProvinceCarousels();
+        };
+
+        if (searchInput) {
+            searchInput.addEventListener("input", (event) => renderProvinces(event.target.value));
+        }
+
+        renderProvinces();
+
+        const gameQuestionEl = document.getElementById('game-question');
+        const gameOptionsEl = document.getElementById('game-options');
+        const gameFeedbackEl = document.getElementById('game-feedback');
+        const gameNextButton = document.getElementById('game-next');
+
+        let currentCorrectProvince = "";
+        let gameLocked = false;
+
+        const pickRandomProvince = () => provinces[Math.floor(Math.random() * provinces.length)];
+
+        const buildOptionList = (correct) => {
+            const options = new Set([correct]);
+            while (options.size < 4) {
+                options.add(pickRandomProvince().name);
+            }
+            return Array.from(options).sort(() => Math.random() - 0.5);
+        };
+
+        const handleAnswer = (selectedName, button) => {
+            if (gameLocked) return;
+            gameLocked = true;
+            const buttons = Array.from(gameOptionsEl.querySelectorAll('.game-option'));
+            buttons.forEach((btn) => (btn.disabled = true));
+            const correctBtn = buttons.find((btn) => btn.dataset.option === currentCorrectProvince);
+
+            if (selectedName === currentCorrectProvince) {
+                button.classList.add('correct');
+                gameFeedbackEl.textContent = "Hebat! Jawabanmu benar.";
+            } else {
+                button.classList.add('wrong');
+                if (correctBtn) {
+                    correctBtn.classList.add('correct');
+                }
+                gameFeedbackEl.textContent = `Belum tepat, jawabannya ${currentCorrectProvince}.`;
+            }
+        };
+
+        const setNewQuestion = () => {
+            const province = pickRandomProvince();
+            currentCorrectProvince = province.name;
+            const houseName = province.house.split(',')[0].trim();
+            const options = buildOptionList(province.name);
+            gameLocked = false;
+            gameFeedbackEl.textContent = "Klik opsi untuk menjawab.";
+            gameQuestionEl.textContent = `Rumah adat ${houseName} berasal dari provinsi mana?`;
+            gameOptionsEl.innerHTML = options
+                .map(
+                    (option) =>
+                        `<button type="button" class="game-option" data-option="${option}">${option}</button>`
+                )
+                .join('');
+        };
+
+        gameOptionsEl.addEventListener('click', (event) => {
+            const target = event.target.closest('.game-option');
+            if (!target) return;
+            handleAnswer(target.dataset.option, target);
+        });
+
+        if (gameNextButton) {
+            gameNextButton.addEventListener('click', () => {
+                setNewQuestion();
+            });
+        }
+
+        setNewQuestion();
+    </script>
+</body>
+</html>
