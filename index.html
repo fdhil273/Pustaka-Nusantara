@@ -35,7 +35,7 @@
             top: 0;
             z-index: 10;
             backdrop-filter: blur(16px);
-            background: rgba(5, 5, 5, 0.75);
+            background: rgba(0, 0, 0, 0.75);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
@@ -85,9 +85,8 @@
         .hero {
             position: relative;
             min-height: 80vh;
-            background-image: linear-gradient(120deg, rgba(5,5,5,0.7), rgba(5,5,5,0.85)), url('img/batik.jpg');
-            background-size: cover;
-            background-position: center;
+            background-color: #040404;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -95,8 +94,26 @@
             padding: 4rem 1.5rem;
         }
 
+        .hero-media {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: brightness(0.8);
+            opacity: 0;
+            transition: opacity 1.3s ease-in-out;
+            z-index: 0;
+        }
+
+        .hero-media.is-visible {
+            opacity: 1;
+        }
+
         .hero-content {
             max-width: 960px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
@@ -125,7 +142,7 @@
         }
 
         main {
-            background: linear-gradient(180deg, rgba(10,10,10,1), rgba(15,15,15,1));
+            background: linear-gradient(180deg, rgb(0, 0, 0), rgb(0, 0, 0));
         }
 
         section {
@@ -206,7 +223,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+            background: linear-gradient(180deg, rgba(255, 0, 0, 0) 0%, rgba(0,0,0,0.5) 100%);
             pointer-events: none;
         }
 
@@ -329,7 +346,7 @@
         }
 
         .cta-section {
-            background-image: linear-gradient(120deg, rgba(5,5,5,0.8), rgba(5,5,5,0.9)), url('img/batik%202.jpg');
+            background-image: linear-gradient(120deg, rgba(41, 41, 41, 0.8), rgba(56, 56, 56, 0.9)), url('img/batik%202.jpg');
             background-size: cover;
             background-position: center;
             border-radius: 32px;
@@ -459,6 +476,123 @@
                 gap: 0.25rem;
             }
         }
+
+        .footer {
+            background-image: linear-gradient(120deg, rgba(3, 12, 24, 0.95), rgba(6, 33, 37, 0.9)), url('img/footer image.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #f5fbff;
+            margin-top: 4rem;
+            border-radius: 40px 40px 0 0;
+            padding: 4rem 1.5rem 3rem;
+            box-shadow: 0 -30px 65px rgba(0, 0, 0, 0.55);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .footer-header {
+            max-width: 600px;
+        }
+
+        .footer-title {
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        .footer-description {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: rgba(245, 251, 255, 0.85);
+            line-height: 1.7;
+        }
+
+        .footer-highlight {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 28px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-panel {
+            flex: 1 1 260px;
+            min-width: 230px;
+            padding: 1.8rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.25);
+            box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.25);
+        }
+
+        .footer-panel h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #8bd5fb;
+        }
+
+        .footer-list {
+            list-style: none;
+            display: grid;
+            gap: 0.65rem;
+        }
+
+        .footer-list li {
+            font-size: 0.95rem;
+            color: #f5fbff;
+        }
+
+        .footer-list span {
+            color: rgba(245, 251, 255, 0.7);
+            font-size: 0.85rem;
+        }
+
+        .footer-copy {
+            text-align: center;
+            color: rgba(245, 251, 255, 0.65);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                border-radius: 32px 32px 0 0;
+                padding: 3.5rem 1.5rem 2.5rem;
+            }
+
+            .footer-grid {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .footer-panel {
+                padding: 1.25rem;
+            }
+
+            .footer-title {
+                font-size: 2.1rem;
+            }
+
+            .footer {
+                padding: 3rem 1.25rem 2rem;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -473,6 +607,8 @@
         </nav>
     </header>
     <section class="hero">
+        <div class="hero-media hero-media--primary is-visible"></div>
+        <div class="hero-media hero-media--secondary"></div>
         <div class="hero-content">
             <p>Eksplorasi ragam bahasa, seni, dan tradisi dari Sabang sampai Merauke.</p>
             <h1>Visit Indonesia Culture</h1>
@@ -525,10 +661,54 @@
             </div>
         </section>
     </main>
-    <footer>
-        © 2025 Pustaka Nusantara 
-        Web karya siswa siswi SMK Telkom Sidoarjo yang bertujuan untuk membantu banyak orang mengenal dan melestarikan budaya asli Nusantara
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-header">
+                <h3 class="footer-title">Pusaka Indonesia</h3>
+                <p class="footer-description">
+                    Pusaka Indonesia adalah website yang dibuat oleh siswa SMK Telkom Sidoarjo untuk
+                    mengenalkan dan menumbuhkan kecintaan terhadap budaya Nusantara kepada masyarakat luas.
+                </p>
+                <div class="footer-highlight">
+                    Website dikembangkan sebagai proyek eksplorasi budaya agar generasi muda dapat
+                    belajar, berbagi, dan melestarikan warisan Indonesia dengan cara yang modern.
+                </div>
+            </div>
+            <div class="footer-grid">
+                <div class="footer-panel">
+                    <h4>Anggota</h4>
+                    <ul class="footer-list">
+                        <li>R. Achmad Fadhil</li>
+                        <li>Zidhane Al Farizi</li>
+                        <li>Ghani Al Fawwaz</li>
+                        <li>Arumi Aqueno</li>
+                        <li>Kenzi Arya</li>
+                    </ul>
+                </div>
+                <div class="footer-panel">
+                    <h4>Social Media</h4>
+                    <ul class="footer-list">
+                        <li>achmadfadhilithsom@gmail.com <span>email</span></li>
+                        <li>zidhandadan09@gmail.com <span>email</span></li>
+                        <li>ghani.al.fawwazi@gmail.com <span>email</span></li>
+                        <li>arumiaqueeno@gmail.com <span>email</span></li>
+                        <li>kenziearyaa1414@gmail.com <span>email</span></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="footer-copy">© 2025 Pusaka Indonesia — Semua hak cipta dilindungi.</p>
+        </div>
     </footer>
+    
+    <!-- Modal Popup -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-name"></h2>
+            <p id="modal-info"></p>
+        </div>
+    </div>
+    
 
     <script>
         const provinces = [
@@ -920,7 +1100,7 @@
         };
 
         const getProvincePhotos = (name) => provincePhotos[name] || [];
-        const buildFallbackProvinceImage = (name) => `https://source.unsplash.com/600x400/?${encodeURIComponent(name + " culture indonesia")}`;
+        const buildFallbackProvinceImage = (name) => https://source.unsplash.com/600x400/?${encodeURIComponent(name + " culture indonesia")};
         const getProvincePrimaryPhoto = (name) => {
             const photos = getProvincePhotos(name);
             return photos.length ? photos[0] : buildFallbackProvinceImage(name);
@@ -930,15 +1110,15 @@
 
         const buildProvinceMediaBlock = (province) => {
             const photos = getProvincePhotos(province.name);
-            const title = `Budaya ${province.name}`;
+            const title = Budaya ${province.name};
 
             if (!photos.length) {
                 const fallback = buildFallbackProvinceImage(province.name);
-                return `<div class="province-image"><img src="${fallback}" alt="${title}"></div>`;
+                return <div class="province-image"><img src="${fallback}" alt="${title}"></div>;
             }
 
             if (photos.length === 1) {
-                return `<div class="province-image"><img src="${photos[0]}" alt="${title}"></div>`;
+                return <div class="province-image"><img src="${photos[0]}" alt="${title}"></div>;
             }
 
             const photosAttr = encodeAttribute(JSON.stringify(photos));
@@ -949,21 +1129,39 @@
             `;
         };
 
-        const heroElement = document.querySelector('.hero');
-        const heroImages = ["img/alam1.jpg", "img/alam2.jpg","img/alam3.jpg","img/alam4.jpg", "img/alam5.jpg"];
+        const heroMediaPrimary = document.querySelector('.hero-media--primary');
+        const heroMediaSecondary = document.querySelector('.hero-media--secondary');
+        const heroLayers = [heroMediaPrimary, heroMediaSecondary].filter(Boolean);
+        const heroImages = ["img/alam1.jpg", "img/alam2.jpg","img/alam3.jpg","img/alam4.jpg", "img/alam5.jpg","img/footer image.jpg"];
         const heroGradient = "linear-gradient(120deg, rgba(5,5,5,0.7), rgba(5,5,5,0.85))";
         let heroIndex = 0;
 
-        const updateHeroBackground = () => {
-            const currentImage = heroImages[heroIndex % heroImages.length];
-            heroElement.style.backgroundImage = `${heroGradient}, url('${currentImage}')`;
+        const setHeroLayerBackground = (layer, image) => {
+            if (!layer) return;
+            layer.style.backgroundImage = ${heroGradient}, url('${image}');
         };
 
-        updateHeroBackground();
-        setInterval(() => {
-            heroIndex += 1;
-            updateHeroBackground();
-        }, 5000);
+        let activeHeroLayer = heroLayers[0] || null;
+        let standbyHeroLayer = heroLayers[1] || null;
+        setHeroLayerBackground(activeHeroLayer, heroImages[heroIndex]);
+        setHeroLayerBackground(standbyHeroLayer, heroImages[(heroIndex + 1) % heroImages.length]);
+
+        const crossfadeHeroBackground = () => {
+            if (!heroLayers.length) return;
+            heroIndex = (heroIndex + 1) % heroImages.length;
+            if (standbyHeroLayer) {
+                setHeroLayerBackground(standbyHeroLayer, heroImages[heroIndex]);
+                requestAnimationFrame(() => {
+                    standbyHeroLayer.classList.add('is-visible');
+                    activeHeroLayer && activeHeroLayer.classList.remove('is-visible');
+                    [activeHeroLayer, standbyHeroLayer] = [standbyHeroLayer, activeHeroLayer];
+                });
+            } else if (activeHeroLayer) {
+                setHeroLayerBackground(activeHeroLayer, heroImages[heroIndex]);
+            }
+        };
+
+        setInterval(crossfadeHeroBackground, 6000);
 
         const featuredIndices = [0, 10, 16, 33];
         const featuredGrid = document.getElementById('featured-grid');
@@ -1056,7 +1254,7 @@
 
             provinceGrid.innerHTML = filtered.length
                 ? filtered.map(renderProvinceCard).join("")
-                : `<div class="empty-state">Belum ada data yang cocok dengan kata kunci tersebut.</div>`;
+                : <div class="empty-state">Belum ada data yang cocok dengan kata kunci tersebut.</div>;
             initProvinceCarousels();
         };
 
@@ -1073,6 +1271,39 @@
 
         let currentCorrectProvince = "";
         let gameLocked = false;
+        const pickFirstItem = (value = "") => value.split(',')[0].trim();
+        const questionBlueprints = [
+            {
+                key: "house",
+                extractor: (province) => pickFirstItem(province.house),
+                buildText: (clue) => Rumah adat ${clue} berasal dari provinsi mana?
+            },
+            {
+                key: "dances",
+                extractor: (province) => pickFirstItem(province.dances),
+                buildText: (clue) => Tari tradisional ${clue} populer di provinsi mana?
+            },
+            {
+                key: "instruments",
+                extractor: (province) => pickFirstItem(province.instruments),
+                buildText: (clue) => Alat musik ${clue} merupakan ciri khas provinsi mana?
+            },
+            {
+                key: "fabrics",
+                extractor: (province) => pickFirstItem(province.fabrics),
+                buildText: (clue) => Kain khas ${clue} berasal dari provinsi mana?
+            },
+            {
+                key: "weapons",
+                extractor: (province) => pickFirstItem(province.weapons),
+                buildText: (clue) => Senjata tradisional ${clue} digunakan oleh provinsi mana?
+            },
+            {
+                key: "languages",
+                extractor: (province) => pickFirstItem(province.languages),
+                buildText: (clue) => Bahasa ${clue} banyak digunakan di provinsi mana?
+            }
+        ];
 
         const pickRandomProvince = () => provinces[Math.floor(Math.random() * provinces.length)];
 
@@ -1099,22 +1330,23 @@
                 if (correctBtn) {
                     correctBtn.classList.add('correct');
                 }
-                gameFeedbackEl.textContent = `Belum tepat, jawabannya ${currentCorrectProvince}.`;
+                gameFeedbackEl.textContent = Belum tepat, jawabannya ${currentCorrectProvince}.;
             }
         };
 
         const setNewQuestion = () => {
             const province = pickRandomProvince();
             currentCorrectProvince = province.name;
-            const houseName = province.house.split(',')[0].trim();
+            const blueprint = questionBlueprints[Math.floor(Math.random() * questionBlueprints.length)];
+            const clue = blueprint.extractor(province) || province.house;
             const options = buildOptionList(province.name);
             gameLocked = false;
             gameFeedbackEl.textContent = "Klik opsi untuk menjawab.";
-            gameQuestionEl.textContent = `Rumah adat ${houseName} berasal dari provinsi mana?`;
+            gameQuestionEl.textContent = blueprint.buildText(clue);
             gameOptionsEl.innerHTML = options
                 .map(
                     (option) =>
-                        `<button type="button" class="game-option" data-option="${option}">${option}</button>`
+                        <button type="button" class="game-option" data-option="${option}">${option}</button>
                 )
                 .join('');
         };
@@ -1134,7 +1366,4 @@
         setNewQuestion();
     </script>
 </body>
-
 </html>
-
-
